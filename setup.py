@@ -1,10 +1,22 @@
 from setuptools import setup, find_packages
+import os
+
+def package_files(directory):
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.join('..', path, filename))
+    return paths
+
+extra_files = package_files('src/repo2txt')
 
 setup(
     name="repo2txt",
     version="0.1.0",
     packages=find_packages('src'),
     package_dir={'': 'src'},
+    package_data={'repo2txt': extra_files},
+    include_package_data=True,
     install_requires=[
         "python-docx",
     ],
