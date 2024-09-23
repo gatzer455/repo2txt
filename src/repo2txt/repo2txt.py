@@ -21,8 +21,7 @@ def load_config(file_path):
         return json.load(file)
 
 # Usage
-config_path = os.path.join(os.path.dirname(__file__), 'config.json')
-config = load_config(config_path)
+config = load_config('config.json')
 IMAGE_EXTENSIONS = config["image_extensions"]
 VIDEO_EXTENSIONS = config["video_extensions"]
 AUDIO_EXTENSIONS = config["audio_extensions"]
