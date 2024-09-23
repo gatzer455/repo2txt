@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 setup(
     name="repo2txt",
     version="0.1.0",
-    packages=find_packages(),
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     install_requires=[
         "python-docx",
-        # Añade aquí otras dependencias si las hay
     ],
     entry_points={
         "console_scripts": [
