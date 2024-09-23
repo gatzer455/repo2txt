@@ -157,13 +157,15 @@ def write_file_content(file_path, output_file, depth):
         depth (int): Current depth in the directory tree for indentation.
     """
     indentation = '  ' * depth
-    try:
-        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
-            for line in file:
-                # Indent each line of the file content
-                output_file.write(f"{indentation}{line}")
-    except Exception as e:
-        output_file.write(f"{indentation}Error reading file: {e}\n")
+    if file_path.endswith('.csv'):
+        output_file.write(f"{indentation}[Contenido del archivo CSV omitido]\n")
+    else:
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+                for line in file:
+                    output_file.write(f"{indentation}{line}")
+        except Exception as e:
+            output_file.write(f"{indentation}Error al leer el archivo: {e}\n")
 
 
 def write_tree_docx(dir_path, doc, args, output_file_path, prefix="", is_last=True, is_root=True):
